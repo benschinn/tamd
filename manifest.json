@@ -1,6 +1,26 @@
 {
   "name": "tamd",
   "version": "1.0",
-  "description": "the new york tamd cooking!",
+  "description": "new york tamd cooking",
+  "permissions": ["declarativeContent","storage"],
+  "background": {
+    "scripts": ["src/index.bs.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "src/images/16.png",
+      "32": "src/images/32.png",
+      "48": "src/images/48.png",
+      "128": "src/images/128.png"
+    }
+  },
+  "icons": {
+    "16": "src/images/16.png",
+    "32": "src/images/32.png",
+    "48": "src/images/48.png",
+    "128": "src/images/128.png"
+  },
   "manifest_version": 2
 }
