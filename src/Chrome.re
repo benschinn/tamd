@@ -27,3 +27,17 @@ external pageStateMatcher: pageStateMatch => t = "PageStateMatcher";
 
 [@bs.new] [@bs.scope ("chrome", "declarativeContent")]
 external showPageAction: unit  => t = "ShowPageAction";
+
+type tabQuery = {. "active": bool, "currentWindow": bool};
+
+type tab = {. "id": int, "url": string};
+
+type tabs = array(tab);
+
+[@bs.val] [@bs.scope ("chrome", "tabs")]
+external query : (tabQuery, tabs => unit) => unit = "";
+
+type script = {. "code": string};
+
+[@bs.val] [@bs.scope ("chrome", "tabs")]
+external executeScript : (tab, script) => unit = "";
