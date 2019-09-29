@@ -35,10 +35,32 @@ Chrome.query({"active": true, "currentWindow": true}, (tabs => {
   div##append(footer);
 
   button##onclick #= (() => {
-    Js.log("button clicked")
+      Chrome.executeScript(
+        [%raw{|tabs[0].id|}] : int,
+        {"code": "var ing = '';
+                  document.querySelector('ul.recipe-ingredients').childNodes.forEach(ele => { 
+                    if(ele.innerText != undefined) {
+                          ing = ing + ele.innerText + `\n`
+                    }
+                  })
+                  var tempNode = document.createElement('textarea');
+                  tempNode.value = ing;
+                  document.body.appendChild(tempNode)
+                  tempNode.select()
+                  document.execCommand('copy')
+                  tempNode.remove()
+                  "
+        }
+      );
   });
 
   footer##onclick #= (() => {
-    Js.log("footer clicked")
+    Chrome.executeScript(
+      [%raw{|tabs[0].id|}] : int,
+      {"code": "document.querySelector('div.nytc---shared---blackBG').style='display:none'; 
+                document.querySelector('body').classList.remove('nytc---modal-window---noScroll');
+                document.querySelector('html').classList.remove('nytc---modal-window---noScroll');"
+      }
+    )
   })
 }));

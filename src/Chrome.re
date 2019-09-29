@@ -40,4 +40,4 @@ external query : (tabQuery, tabs => unit) => unit = "";
 type script = {. "code": string};
 
 [@bs.val] [@bs.scope ("chrome", "tabs")]
-external executeScript : (tab, script) => unit = "";
+external executeScript : (int, script) => unit = "";
