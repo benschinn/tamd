@@ -6,7 +6,7 @@ addListener(() => {
     addRules([|
       {
         "conditions": [|
-           pageStateMatcher({ "pageUrl": {"hostEquals": "cooking.nytimes.com"}}) 
+           pageStateMatcher({ "pageUrl": {"urlContains": "nytimes"}})
         |],
         "actions": [|showPageAction()|]
       } 
