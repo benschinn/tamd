@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const GenerateJsonPlugin = require('generate-json-webpack-plugin')
+const GenerateJsonPlugin = require('generate-json-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const outputDir = path.join(__dirname, 'build/');
-const merge = require('webpack-merge')
+const merge = require('webpack-merge');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -19,11 +20,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      inject: false
-    }),
-    new GenerateJsonPlugin(
-        'manifest.json',
-      merge(require('./manifest.json')),
-      )
-  ],
+			inject: false
+		}),
+		new GenerateJsonPlugin(
+			'manifest.json',
+			merge(require('./manifest.json')),
+		),
+    new CopyPlugin([{ from: 'assets', to: 'assets' }])
+	],
 };
