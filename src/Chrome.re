@@ -2,7 +2,7 @@ type t;
 
 type pageStateMatch = {
   .
-  "pageUrl": {. "hostEquals": string }
+  "pageUrl": {. "urlContains": string }
 };
 
 type rule = {
